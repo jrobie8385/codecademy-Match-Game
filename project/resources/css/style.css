@@ -17,12 +17,6 @@ a {
   font-size: 1rem;
 }
 
-.card h1 {
-  font-weight: 900;
-  font-size: 7rem;
-  color: rgb(255, 255, 255);
-}
-
 #match-game {
   font-weight: bold;
   font-size: 2.5rem;
@@ -43,9 +37,6 @@ div.card { /*Why does only div.card work here and not just .card for creating th
   justify-content: center;
   align-items: center;
   cursor: pointer; /* Note that "cursor: default;" results in the arrow."*/
-}
-
-.card:Click {
   font-weight: 900;
   font-size: 7rem;
   color: rgb(255, 255, 255);
