@@ -76,18 +76,18 @@ MatchGame.flipCard = function($card, $game) {
 
   if(flippedCards.length === 2) {
     if(flippedCards[0].data("value") === flippedCards[1].data("value")) {
-      flippedCards[0].css("background-color", rgb(153, 153, 153));
-      flippedCards[0].css("color", rgb(204, 204, 204));
-      flippedCards[1].css("background-color", rgb(153, 153, 153));
-      flippedCards[1].css("color", rgb(204, 204, 204));
+      flippedCards[0].css("background-color", "rgb(153, 153, 153)");
+      flippedCards[0].css("color", "rgb(204, 204, 204)");
+      flippedCards[1].css("background-color", "rgb(153, 153, 153)");
+      flippedCards[1].css("color", "rgb(204, 204, 204)");
     } else {
       window.setTimeout(function() {
         flippedCards[0].data("isFlipped", false);
         flippedCards[0].text("");
-        flippedCards[0].css("background-color", rgb(32, 64, 86));
+        flippedCards[0].css("background-color", "rgb(32, 64, 86)");
         flippedCards[1].data("isFlipped", false);
         flippedCards[1].text("");
-        flippedCards[1].css("background-color", rgb(32, 64, 86));
+        flippedCards[1].css("background-color", "rgb(32, 64, 86)"); //Must put the rgb() in quotes because this is a css properly, NOT a javascript one.
       }, 350);
     }
     $game.data("flippedCards", []);
