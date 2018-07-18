@@ -47,7 +47,7 @@ MatchGame.renderCards = function(cardValues, $game) {
     "hsl(310, 85%, 65%)",
     "hsl(360, 85%, 65%)"];
 
-  $game.empty();
+  $game.empty(); // http://api.jquery.com/empty/
   for (let cardValue = 0; cardValue < cardValues.length; cardValue++) {
     let $newCard = $("<div class='card col-md-3'></div>");
     $newCard.data("value", cardValues[cardValue]);
