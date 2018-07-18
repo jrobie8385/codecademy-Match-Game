@@ -37,6 +37,7 @@ MatchGame.generateCardValues = function () {
 
 MatchGame.renderCards = function(cardValues, $game) {
   $game.data("flippedCards", []); // note: do not put a "let" here because $game is already in the function argument.
+  $game.data("storedFlippedCards", []);
   let cardColor = [
     "hsl(25, 85%, 65%)",
     "hsl(55, 85%, 65%)",
@@ -80,6 +81,11 @@ MatchGame.flipCard = function($card, $game) {
       flippedCards[0].css("color", "rgb(204, 204, 204)");
       flippedCards[1].css("background-color", "rgb(153, 153, 153)");
       flippedCards[1].css("color", "rgb(204, 204, 204)");
+      $game.data("storedFlippedCards").push(flippedCards[0], flippedCards[1]);
+      if ($game.data("storedFlippedCards").length === 16) {
+        let $winMessage = $("<h1>You Win!!!</h1>")
+        $(".you-win-message").append($winMessage);
+      }
     } else {
       window.setTimeout(function() {
         flippedCards[0].data("isFlipped", false);
