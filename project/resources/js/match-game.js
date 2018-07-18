@@ -10,6 +10,10 @@ var MatchGame = {
 $(document).ready(function() {
   let $game = $("#game");
   MatchGame.renderCards(MatchGame.generateCardValues(), $game);
+
+  $("button").on("click", function() {
+    MatchGame.renderCards(MatchGame.generateCardValues(), $game);
+  });
 });
 
 /*
@@ -56,6 +60,7 @@ MatchGame.renderCards = function(cardValues, $game) {
     $newCard.data("color", cardColor[cardValues[cardValue]-1]);
     $game.append($newCard);
   }
+
   $(".card").on("click", function() { //need to call on the individual card by using the .card class.
     MatchGame.flipCard($(this), $game);
   });
