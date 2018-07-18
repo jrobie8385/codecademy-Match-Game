@@ -9,10 +9,13 @@ var MatchGame = {
 
 $(document).ready(function() {
   let $game = $("#game");
-  MatchGame.renderCards(MatchGame.generateCardValues(), $game);
+  let z = 0;
+  MatchGame.renderCards(MatchGame.generateCardValues(), z, $game);
 
   $("button").on("click", function() {
-    MatchGame.renderCards(MatchGame.generateCardValues(), $game);
+    let z = 0;
+    $(".you-win-message").empty();
+    MatchGame.renderCards(MatchGame.generateCardValues(), z, $game);
   });
 });
 
@@ -39,7 +42,7 @@ MatchGame.generateCardValues = function () {
   object.
 */
 
-MatchGame.renderCards = function(cardValues, $game) {
+MatchGame.renderCards = function(cardValues, z, $game) {
   $game.data("flippedCards", []); // note: do not put a "let" here because $game is already in the function argument.
   $game.data("storedFlippedCards", []);
   let cardColor = [
@@ -62,7 +65,8 @@ MatchGame.renderCards = function(cardValues, $game) {
   }
 
   $(".card").on("click", function() { //need to call on the individual card by using the .card class.
-    MatchGame.flipCard($(this), $game);
+    z++;
+    MatchGame.flipCard($(this), z, $game);
   });
 };
 
@@ -71,11 +75,10 @@ MatchGame.renderCards = function(cardValues, $game) {
   Updates styles on flipped cards depending whether they are a match or not.
  */
 
-MatchGame.flipCard = function($card, $game) {
+MatchGame.flipCard = function($card, z, $game) {
   if($card.data("isFlipped")) { // use .data("item") to access a data attribute in a jQuery element.
     return;
   }
-
   $card.css("background-color", $card.data("color")).text($card.data("value")).data("isFlipped", true);
   let flippedCards = $game.data("flippedCards");
   flippedCards.push($card);
@@ -89,7 +92,8 @@ MatchGame.flipCard = function($card, $game) {
       $game.data("storedFlippedCards").push(flippedCards[0], flippedCards[1]);
       if ($game.data("storedFlippedCards").length === 16) {
         let $winMessage = $("<h1>You Win!!!</h1>")
-        $(".you-win-message").append($winMessage);
+        let $totalTriesRequired = $("<h1>" + z + "</h1>");
+        $(".you-win-message").append($winMessage, $totalTriesRequired);
       }
     } else {
       window.setTimeout(function() {
